@@ -134,3 +134,4 @@ export const technicalSkillsList = [
   { name: "Git & GitHub CI/CD", category: "Data & Tools", icon: "GitBranch" },
   { name: "Jupyter Notebooks", category: "Data & Tools", icon: "BookOpen" }
 ];
+

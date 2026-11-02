@@ -205,3 +205,4 @@ The project is fully pre-configured for automated continuous deployment via **Gi
    ```
 
 Relative asset paths (`base: './'`) ensure that the site works seamlessly whether served under a subdirectory (`/Portfolio/`) or on a custom apex root domain (`vshaunak.github.io`).
+

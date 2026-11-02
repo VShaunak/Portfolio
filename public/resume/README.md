@@ -8,3 +8,4 @@ resumeUrl: "./resume/Shaunak_Vidwans_Resume.pdf"
 ```
 
 The portfolio's built-in PDF viewer will automatically detect it and render both the embedded reader and the direct download button.
+

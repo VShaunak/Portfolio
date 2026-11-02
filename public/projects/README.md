@@ -12,3 +12,4 @@ For example:
 Each project retains its own isolated directory structure, static HTML, CSS, JavaScript, and assets without interfering with the main portfolio React app.
 
 The GitHub Actions workflow (`.github/workflows/deploy.yml`) will bundle this directory along with the main portfolio build into the `dist` artifact for GitHub Pages.
+
