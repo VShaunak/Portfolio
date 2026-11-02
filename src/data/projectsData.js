@@ -58,19 +58,19 @@ export const projectsData = [
   {
     id: "racinggenesis-2",
     repoName: "RacingGenesis-2.0",
-    title: "Racing Genesis 2.0 Arcade Simulator",
+    title: "Racing Genesis 2.0: AI for Visual Computing & Simulation",
     category: "Interactive Applications",
-    categoryTags: ["Interactive Applications", "Web Development"],
-    description: "High-octane browser-based arcade racing game prototype featuring custom 2D physics simulation, interactive vehicle controls, dynamic obstacle generation, and responsive audio.",
-    problem: "Standard web games often struggle with input lag, choppy frame timing, and unconvincing vehicle handling on standard desktop and mobile browsers.",
-    approach: "Architected a custom 60 FPS requestAnimationFrame rendering loop with fixed-timestep Euler integration, progressive velocity curves, bounding-box collision detection, and procedural road hazards.",
+    categoryTags: ["Interactive Applications", "AI & Machine Learning", "Research & Experiments"],
+    description: "Rutgers University CS 549 (AI for Visual Computing) flagship project led by Shaunak M Vidwans. Features Autonomous AI driving mode vs. manual WASD controls, 90 FPS WebGL rendering, Catmull-Rom spline circuits, and Pacejka lateral tire slip dynamics across 5 authentic F1 tracks.",
+    problem: "Balancing high-performance 90 FPS WebGL rendering loops with realistic mathematical tire slip dynamics and intelligent autonomous AI racing agents in standard browsers.",
+    approach: "Architected a three-state interactive loop integrating Catmull-Rom spline circuit generation, Pacejka lateral slip friction equations, and autonomous AI steering logic alongside manual keyboard controls.",
     keyFeatures: [
-      "Custom 2D canvas physics engine with acceleration, drift damping, and braking mechanics",
-      "Dynamic obstacle spawning with difficulty scaling based on elapsed lap time",
-      "Responsive keyboard steering controls and HUD score/speedometer telemetry",
-      "Full video walkthrough demonstration and interactive browser prototype"
+      "Autonomous AI driving mode with automated path-following and collision avoidance vs. manual WASD control",
+      "90 FPS WebGL rendering pipeline with Catmull-Rom spline circuit interpolation and Pacejka lateral tire slip dynamics",
+      "Complete three-state loop: Configuration Modal (5 F1 tracks: Monza, Silverstone, Spa, Monaco, Suzuka), Live Telemetry Race Canvas, and Post-Race Results",
+      "Full video walkthrough demonstration and playable browser prototype"
     ],
-    technologies: ["JavaScript ES6+", "HTML5 Canvas", "CSS3 Animations", "Game Physics", "Audio Synthesis"],
+    technologies: ["AI for Visual Computing", "WebGL", "Autonomous AI Agents", "JavaScript ES6+", "HTML5 Canvas", "Pacejka Physics", "Catmull-Rom Splines"],
     githubUrl: "https://github.com/VShaunak/RacingGenesis-2.0",
     liveUrl: "https://vshaunak.github.io/RacingGenesis-2.0/prototype/index.html",
     portfolioUrl: "",
@@ -631,3 +631,4 @@ export const projectsData = [
     featured: true
   }
 ];
+
