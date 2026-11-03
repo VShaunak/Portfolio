@@ -118,27 +118,27 @@ export default function InteractiveGeometricName() {
       // Two solid geometric companion polyhedra hovering left and right around the name
       const solids = [
         {
-          // Left Geometric Solid (Icosahedron)
+          // Primary Geometric Solid (Icosahedron on Right Side)
           verts: ICO_VERTS,
           faces: ICO_FACES,
-          scale: Math.min(w, h) * (w < 640 ? 0.22 : 0.28),
+          scale: Math.min(w, h) * (w < 640 ? 0.24 : 0.32),
           pos: [
-            w * 0.12 + mouseRef.current.x * 20,
-            h * 0.50 + Math.sin(time * 1.2) * 10 + mouseRef.current.y * 15
+            w * (w < 768 ? 0.82 : 0.78) + mouseRef.current.x * 25,
+            h * 0.45 + Math.sin(time * 1.2) * 12 + mouseRef.current.y * 15
           ],
-          rot: [time * 0.8, time * 1.1 + mouseRef.current.x * 0.8, time * 0.5],
+          rot: [time * 0.7, time * 1.0 + mouseRef.current.x * 0.8, time * 0.4],
           accentColor: '#1a73e8'
         },
         {
-          // Right Geometric Solid (Octahedron)
+          // Secondary Geometric Solid (Octahedron on Far Right)
           verts: OCTA_VERTS,
           faces: OCTA_FACES,
-          scale: Math.min(w, h) * (w < 640 ? 0.20 : 0.26),
+          scale: Math.min(w, h) * (w < 640 ? 0.18 : 0.24),
           pos: [
-            w * 0.88 - mouseRef.current.x * 20,
-            h * 0.48 + Math.cos(time * 1.1) * 10 - mouseRef.current.y * 15
+            w * (w < 768 ? 0.92 : 0.90) - mouseRef.current.x * 20,
+            h * 0.65 + Math.cos(time * 1.1) * 10 - mouseRef.current.y * 15
           ],
-          rot: [-time * 0.9, -time * 0.7 - mouseRef.current.x * 0.8, time * 0.6],
+          rot: [-time * 0.8, -time * 0.7 - mouseRef.current.x * 0.8, time * 0.5],
           accentColor: '#34a853'
         }
       ];
@@ -229,7 +229,7 @@ export default function InteractiveGeometricName() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full py-6 sm:py-8 flex items-center justify-center cursor-pointer select-none group"
+      className="relative w-full py-2 sm:py-4 flex items-start justify-start cursor-pointer select-none group text-left"
     >
       {/* Realtime 3D Solid Geometric Companion Canvas */}
       <canvas
@@ -239,26 +239,25 @@ export default function InteractiveGeometricName() {
 
       {/* Solid Geometric Background Glow Frame */}
       <div 
-        className={`absolute inset-x-8 inset-y-2 rounded-3xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-teal-500/10 dark:from-blue-500/15 dark:via-indigo-500/15 dark:to-teal-500/15 blur-xl transition-opacity duration-300 pointer-events-none ${
-          isHovered ? 'opacity-100 scale-105' : 'opacity-40 scale-100'
+        className={`absolute left-0 right-12 inset-y-0 rounded-3xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-teal-500/10 dark:from-blue-500/15 dark:via-indigo-500/15 dark:to-teal-500/15 blur-2xl transition-opacity duration-300 pointer-events-none ${
+          isHovered ? 'opacity-100 scale-102' : 'opacity-30 scale-100'
         }`}
       />
 
-      {/* Main Big, Attractive Shaunak Vidwans Typography */}
-      <div className="relative z-10 text-center px-4">
+      {/* Main Big, Attractive Shaunak Vidwans Typography - Left-Aligned */}
+      <div className="relative z-10 text-left">
         {/* Subtle Geometric Wireframe Crown Accent */}
-        <div className="flex items-center justify-center gap-2 mb-2 opacity-70 group-hover:opacity-100 transition-opacity">
+        <div className="flex items-center justify-start gap-2 mb-2 opacity-75 group-hover:opacity-100 transition-opacity">
           <span className="w-1.5 h-1.5 rotate-45 bg-[#1a73e8]" />
-          <span className="h-[1px] w-12 bg-gradient-to-r from-transparent via-[#1a73e8] to-transparent" />
+          <span className="h-[1px] w-10 bg-gradient-to-r from-[#1a73e8] to-transparent" />
           <span className="text-[11px] font-mono tracking-widest uppercase text-[#1a73e8] dark:text-[#8ab4f8] font-bold">
-            Software Developer • AI & ML
+            Software Developer • AI & Machine Learning
           </span>
-          <span className="h-[1px] w-12 bg-gradient-to-r from-transparent via-[#1a73e8] to-transparent" />
           <span className="w-1.5 h-1.5 rotate-45 bg-[#34a853]" />
         </div>
 
         {/* Big Bold Headline */}
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight text-[#202124] dark:text-white transition-all duration-300 transform group-hover:scale-[1.02] drop-shadow-xs">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight text-[#202124] dark:text-white transition-all duration-300 transform group-hover:scale-[1.01] drop-shadow-xs">
           <span className="inline-block hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] transition-colors">
             Shaunak
           </span>{' '}
@@ -268,7 +267,7 @@ export default function InteractiveGeometricName() {
         </h1>
 
         {/* Subtle Interactive Instruction */}
-        <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] font-mono text-[#5f6368] dark:text-[#9aa0a6] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        <div className="mt-2.5 flex items-center justify-start gap-1.5 text-[11px] font-mono text-[#5f6368] dark:text-[#9aa0a6] opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <span className="w-1.5 h-1.5 rounded-full bg-[#1a73e8] animate-ping" />
           <span>Interactive 3D geometry responds to cursor movement</span>
         </div>
