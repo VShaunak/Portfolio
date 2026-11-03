@@ -34,6 +34,19 @@ export const siteConfig = {
     }
   ],
 
+  // Education & Academic Credentials
+  education: [
+    {
+      degree: "Bachelor's Degree",
+      gpa: "3.24",
+      period: "Completed",
+      highlights: [
+        "Graduated with a cumulative GPA of 3.24.",
+        "Core coursework in Artificial Intelligence, Machine Learning, Data Structures, Algorithms, and Software Engineering."
+      ]
+    }
+  ],
+
   // Resume Configuration
   // When you upload your resume PDF (e.g. to public/resume/Shaunak_Vidwans_Resume.pdf or Google Drive), put the URL here.
   resumeUrl: "", 

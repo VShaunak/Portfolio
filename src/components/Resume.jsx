@@ -449,9 +449,51 @@ export default function Resume() {
               </div>
             </div>
 
+            {/* Education & Academic Credentials */}
+            <div>
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-indigo-500" />
+                <span>Education & Academic Credentials</span>
+              </h3>
+
+              <div className="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 hover:border-emerald-500/40 transition">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                  <div>
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <span>Bachelor's Degree</span>
+                      <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">
+                        GPA: 3.24
+                      </span>
+                    </h4>
+                    <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                      Bachelor of Science / Technology
+                    </span>
+                  </div>
+                  <div className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                    Cumulative GPA: <span className="font-bold text-slate-900 dark:text-white">3.24 / 4.0</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 mt-3">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0" />
+                    <span>
+                      Graduated with a <strong>3.24 GPA</strong> in Bachelor's program, with academic focus on software engineering, artificial intelligence, and data analytics.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0" />
+                    <span>
+                      <strong>Key Coursework & Research:</strong> Artificial Intelligence, Machine Learning, Deep Neural Networks, Data Structures & Algorithms, Relational Database Management, Visual Computing, and Operating Systems.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
             {/* Print Footer note */}
             <div className="text-[11px] font-mono text-slate-400 pt-4 border-t border-slate-200 dark:border-slate-800 text-center">
-              Shaunak Vidwans • Software Developer (Universal SelfCare: June 2026 – Sep 2026) • Portfolio: https://vshaunak.github.io/Portfolio/
+              Shaunak Vidwans • Bachelor's GPA: 3.24 • Software Developer (Universal SelfCare: June 2026 – Sep 2026) • Portfolio: https://vshaunak.github.io/Portfolio/
             </div>
           </div>
         )}

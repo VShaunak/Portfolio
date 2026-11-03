@@ -37,8 +37,9 @@ Designed with **Google's spaciousness**, **Apple's premium typography**, **Linea
    - **Reaction Rush**: Precision reaction timer benchmark measuring reflexes against esports and F1 driver standards across 5 randomized rounds.
    - Persistent personal best high scores stored via `localStorage`.
 
-5. **Professional Resume & Experience Integration**
+5. **Professional Resume & Credentials Integration**
    - Professional Work Experience: **Software Developer** at **Universal SelfCare** (`June 2026 – Sep 2026`), delivering responsive healthcare platform features, full-stack workflows, and API integrations.
+   - Academic Credentials: **Bachelor's Degree** with a cumulative **GPA of 3.24**, focused on Software Engineering, Artificial Intelligence, and Data Science.
    - Interactive verified resume with one-click print-to-PDF formatting, alongside an embedded PDF viewer card with direct download button.
    - Verified project delivery and technical competencies across AI, machine learning, and systems engineering.
 
