@@ -170,12 +170,6 @@ export default function ProjectsPage({ onNavigate }) {
                   <span className="text-[11px] font-medium text-[#1a73e8] dark:text-[#8ab4f8]">
                     {project.category}
                   </span>
-                  {project.liveUrl && (
-                    <span className="inline-flex items-center gap-1 text-[11px] text-[#137333] dark:text-[#81c995]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#34a853]" />
-                      Live Website Available
-                    </span>
-                  )}
                   {project.youtubeUrl && (
                     <span className="inline-flex items-center gap-1 text-[11px] text-[#c5221f] dark:text-[#f28b82]">
                       <Play className="w-3 h-3 fill-current" />
@@ -223,17 +217,6 @@ export default function ProjectsPage({ onNavigate }) {
                 </button>
 
                 <div className="flex items-center gap-2">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-full text-[#5f6368] dark:text-[#9aa0a6] hover:text-[#1a73e8] dark:hover:text-[#8ab4f8] hover:bg-[#e8f0fe] dark:hover:bg-[#1a2e4c] transition"
-                      title="Visit Live Website"
-                    >
-                      <Globe className="w-4 h-4" />
-                    </a>
-                  )}
                   <a
                     href={project.githubUrl}
                     target="_blank"

@@ -64,12 +64,10 @@ export default function ProjectPage({ projectId, onNavigateBack, onSelectProject
           <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#e8f0fe] dark:bg-[#1a2e4c] text-[#1967d2] dark:text-[#8ab4f8]">
             {project.category}
           </span>
-          {project.liveUrl && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#e6f4ea] dark:bg-[#133321] text-[#137333] dark:text-[#81c995]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#34a853]" />
-              Live Published
-            </span>
-          )}
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#f1f3f4] dark:bg-[#202124] text-[#3c4043] dark:text-[#bdc1c6]">
+            <Github className="w-3.5 h-3.5" />
+            Verified Repository
+          </span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#202124] dark:text-[#ffffff] leading-tight mb-4">
@@ -82,28 +80,16 @@ export default function ProjectPage({ projectId, onNavigateBack, onSelectProject
 
         {/* Action Buttons Bar */}
         <div className="flex flex-wrap items-center gap-3 mt-6 pt-6 border-t border-[#dadce0] dark:border-[#3c4043]">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-sm font-medium transition shadow-sm"
-            >
-              <Globe className="w-4 h-4" />
-              <span>Visit Live Website</span>
-              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-            </a>
-          )}
-
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#f1f3f4] dark:bg-[#202124] hover:bg-[#e8eaed] dark:hover:bg-[#303134] text-[#202124] dark:text-[#e8eaed] text-sm font-medium border border-[#dadce0] dark:border-[#3c4043] transition"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-sm font-medium transition shadow-sm"
             >
               <Github className="w-4 h-4" />
               <span>Source Code on GitHub</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
             </a>
           )}
 

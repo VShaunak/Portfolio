@@ -3,128 +3,64 @@ import {
   ArrowRight, 
   FileText, 
   Send, 
-  Layers, 
-  Cpu, 
-  Gamepad2, 
-  User, 
+  Briefcase, 
+  GraduationCap, 
   Wrench, 
-  Sparkles, 
+  Code2, 
+  Layers, 
   ExternalLink,
   ChevronRight,
-  Globe,
   Play
 } from 'lucide-react';
-import { Github } from '../components/Icons';
+import { Github, Linkedin } from '../components/Icons';
+import InteractiveGeometricName from '../components/InteractiveGeometricName';
 import { siteConfig } from '../config/siteConfig';
 import { projectsData } from '../data/projectsData';
 
 export default function HomePage({ onNavigate }) {
-  // Flagship projects for home spotlight
-  const flagshipProjects = projectsData.filter((p) => p.featured).slice(0, 3);
-
-  const gateways = [
-    {
-      id: 'about',
-      title: 'About & Background',
-      category: 'Professional Profile',
-      desc: 'Software Developer experience at Universal SelfCare (June 2026 – Sep 2026), AI research, and engineering pillars.',
-      icon: User,
-      color: 'text-[#1a73e8] dark:text-[#8ab4f8]',
-      badge: 'Profile'
-    },
-    {
-      id: 'skills',
-      title: 'Verified Tech Stack',
-      category: 'Competencies',
-      desc: '25+ languages, ML frameworks, databases, and dev tools verified directly from public GitHub repositories.',
-      icon: Wrench,
-      color: 'text-[#137333] dark:text-[#81c995]',
-      badge: 'Verified'
-    },
-    {
-      id: 'projects',
-      title: 'Projects Directory',
-      category: 'Portfolio',
-      desc: 'Explore all 25 public repositories spanning autonomous AI, multi-LLM consensus, healthcare intelligence, and web apps.',
-      icon: Layers,
-      color: 'text-[#1a73e8] dark:text-[#8ab4f8]',
-      badge: '25 Repos'
-    },
-    {
-      id: 'games',
-      title: 'Arcade Game Zone',
-      category: 'Interactive Labs',
-      desc: 'Play 5 custom browser arcade games (Neon Racer, Memory Matrix, Space Defender, 2048, Reaction Rush) with high scores.',
-      icon: Gamepad2,
-      color: 'text-[#b06000] dark:text-[#fdd663]',
-      badge: '5 Games'
-    },
-    {
-      id: 'resume',
-      title: 'Curriculum Vitae',
-      category: 'Credentials',
-      desc: 'Inspect verified work experience at Universal SelfCare, Bachelor\'s GPA 3.24, education, and print/export PDF.',
-      icon: FileText,
-      color: 'text-[#185abc] dark:text-[#8ab4f8]',
-      badge: 'Resume'
-    },
-    {
-      id: 'contact',
-      title: 'Direct Contact',
-      category: 'Inquiries',
-      desc: 'Send a direct message through the validated form or reach out via email, LinkedIn, or GitHub.',
-      icon: Send,
-      color: 'text-[#c5221f] dark:text-[#f28b82]',
-      badge: 'Connect'
-    }
-  ];
+  // Curated flagship projects for the Selected Work section
+  const selectedProjects = projectsData.filter((p) => p.featured).slice(0, 4);
 
   return (
-    <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      {/* 1. Hero Section */}
-      <section className="text-center flex flex-col items-center mb-24">
-        {/* Status Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-[#202124]/80 backdrop-blur-sm text-[#3c4043] dark:text-[#bdc1c6] border border-[#dadce0] dark:border-[#3c4043] text-xs font-medium tracking-normal mb-8 shadow-xs">
-          <span className="w-2 h-2 rounded-full bg-[#34a853]" />
-          <span>Universal SelfCare: Software Developer (June 2026 – Sep 2026)</span>
-        </div>
+    <div className="pt-20 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-28">
+      {/* ============================================================ */}
+      {/* HERO SECTION                                                 */}
+      {/* ============================================================ */}
+      <section className="text-center flex flex-col items-center pt-8 sm:pt-12">
+        {/* Subtle greeting */}
+        <p className="text-sm sm:text-base font-medium text-[#1a73e8] dark:text-[#8ab4f8] mb-1">
+          Hi, I'm
+        </p>
 
-        {/* Developer Name */}
-        <h2 className="text-xs sm:text-sm font-semibold tracking-wider text-[#5f6368] dark:text-[#9aa0a6] uppercase mb-3">
-          {siteConfig.name}
-        </h2>
+        {/* Big, Attractive, Interactive Geometric Shaunak Vidwans */}
+        <InteractiveGeometricName />
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#202124] dark:text-[#ffffff] leading-[1.10] mb-6 max-w-4xl">
-          Building Ideas Into <br className="hidden sm:inline" />
+        <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#202124] dark:text-white leading-snug mt-2 mb-4 max-w-3xl">
+          Building Ideas Into{' '}
           <span className="text-[#1a73e8] dark:text-[#8ab4f8]">
             Intelligent Experiences.
           </span>
-        </h1>
+        </h2>
 
-        {/* Supporting Headline */}
-        <p className="text-base sm:text-xl text-[#5f6368] dark:text-[#bdc1c6] font-normal mb-6 max-w-2xl leading-relaxed">
-          {siteConfig.subheadline}
+        {/* Subtitle */}
+        <p className="text-sm sm:text-lg text-[#5f6368] dark:text-[#bdc1c6] max-w-2xl font-normal leading-relaxed mb-8">
+          Software Developer turning complex algorithms and data into practical technology solutions, exploring artificial intelligence, machine learning, and interactive applications.
         </p>
 
-        {/* Introduction */}
-        <p className="text-sm sm:text-base text-[#5f6368] dark:text-[#9aa0a6] mb-10 max-w-2xl leading-relaxed">
-          {siteConfig.bio}
-        </p>
-
-        {/* Primary Action Buttons */}
+        {/* Three Primary Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-3 w-full max-w-md sm:max-w-none">
           <button
             onClick={() => onNavigate('projects')}
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-sm font-medium shadow-xs hover:shadow transition-colors cursor-pointer"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-sm font-medium shadow-xs hover:shadow transition cursor-pointer"
           >
-            <span>Explore All Projects</span>
+            <span>Explore My Work</span>
             <ArrowRight className="w-4 h-4" />
           </button>
 
           <button
             onClick={() => onNavigate('resume')}
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/90 dark:bg-[#202124]/90 hover:bg-white dark:hover:bg-[#303134] text-[#202124] dark:text-[#ffffff] border border-[#dadce0] dark:border-[#3c4043] text-sm font-medium shadow-xs transition-colors cursor-pointer"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/90 dark:bg-[#202124]/90 hover:bg-white dark:hover:bg-[#303134] text-[#202124] dark:text-white border border-[#dadce0] dark:border-[#3c4043] text-sm font-medium shadow-xs transition cursor-pointer"
           >
             <FileText className="w-4 h-4 text-[#1a73e8] dark:text-[#8ab4f8]" />
             <span>View Resume</span>
@@ -132,153 +68,75 @@ export default function HomePage({ onNavigate }) {
 
           <button
             onClick={() => onNavigate('contact')}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/80 dark:bg-[#202124]/80 hover:bg-white dark:hover:bg-[#303134] text-[#3c4043] dark:text-[#bdc1c6] border border-[#dadce0]/80 dark:border-[#3c4043] text-sm font-medium transition-colors cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/80 dark:bg-[#202124]/80 hover:bg-white dark:hover:bg-[#303134] text-[#3c4043] dark:text-[#bdc1c6] border border-[#dadce0]/80 dark:border-[#3c4043] text-sm font-medium transition cursor-pointer"
           >
             <Send className="w-4 h-4 text-[#5f6368] dark:text-[#9aa0a6]" />
             <span>Contact Me</span>
           </button>
         </div>
-
-        {/* Highlights Bar */}
-        <div className="mt-14 pt-8 border-t border-[#dadce0]/70 dark:border-[#3c4043]/70 w-full max-w-2xl flex flex-wrap items-center justify-center gap-6 text-xs text-[#5f6368] dark:text-[#9aa0a6]">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#1a73e8]" />
-            <span>25 Public Repositories</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#34a853]" />
-            <span>5 Playable Web Games</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#fbbc04]" />
-            <span>Multi-LLM & Computer Vision</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#ea4335]" />
-            <span>Bachelor's GPA: 3.24</span>
-          </div>
-        </div>
       </section>
 
-      {/* 2. Page Gateways Grid (Dedicated Pages Overview) */}
-      <section className="mb-24">
-        <div className="text-left mb-8">
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#1a73e8] dark:text-[#8ab4f8] mb-2">
-            <span>PORTFOLIO SECTIONS</span>
-            <span>•</span>
-            <span>SEPARATE DEDICATED PAGES</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202124] dark:text-white">
-            Explore Portfolio Pages
-          </h2>
-          <p className="text-sm text-[#5f6368] dark:text-[#9aa0a6] mt-1">
-            Each section features its own dedicated page with comprehensive architectural notes, source code, and live tools.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {gateways.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={item.id}
-                onClick={() => onNavigate(item.id)}
-                className="group p-6 rounded-2xl bg-white/80 dark:bg-[#1a1a1c]/80 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] transition-all duration-150 hover:-translate-y-0.5 shadow-xs hover:shadow cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-9 h-9 rounded-full bg-[#f1f3f4] dark:bg-[#202124] flex items-center justify-center">
-                      <Icon className={`w-4 h-4 ${item.color}`} />
-                    </div>
-                    <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-[#f1f3f4] dark:bg-[#202124] text-[#5f6368] dark:text-[#9aa0a6]">
-                      {item.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base font-semibold text-[#202124] dark:text-white group-hover:text-[#1a73e8] dark:group-hover:text-[#8ab4f8] transition-colors mb-1.5 flex items-center justify-between">
-                    <span>{item.title}</span>
-                    <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </h3>
-
-                  <p className="text-xs text-[#5f6368] dark:text-[#9aa0a6] leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-[#dadce0]/50 dark:border-[#3c4043]/50 flex items-center text-xs font-medium text-[#1a73e8] dark:text-[#8ab4f8]">
-                  <span>Open {item.title} Page</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 3. Flagship Projects Spotlight */}
-      <section>
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8">
+      {/* ============================================================ */}
+      {/* 01 / SELECTED WORK — Things I've built.                       */}
+      {/* ============================================================ */}
+      <section id="selected-work" className="scroll-mt-24">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#dadce0] dark:border-[#3c4043]">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#137333] dark:text-[#81c995] mb-2">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>FLAGSHIP RESEARCH & SOFTWARE</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#202124] dark:text-white">
-              Featured Flagship Projects
+            <span className="text-xs font-mono font-semibold text-[#1a73e8] dark:text-[#8ab4f8] uppercase tracking-wider block mb-1">
+              01 / Selected Work
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#202124] dark:text-white">
+              Things I've built.
             </h2>
-            <p className="text-sm text-[#5f6368] dark:text-[#9aa0a6] mt-1">
-              Deep dive into autonomous vision computing, multi-LLM consensus graphs, and healthcare intelligence.
+            <p className="text-xs sm:text-sm text-[#5f6368] dark:text-[#9aa0a6] mt-1 max-w-xl">
+              A selection of projects exploring software engineering, machine learning, multi-agent systems, and data analytics.
             </p>
           </div>
 
           <button
             onClick={() => onNavigate('projects')}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline cursor-pointer shrink-0"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline cursor-pointer shrink-0"
           >
-            <span>View All 25 Repositories</span>
+            <span>View all 25 repositories</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        <div className="space-y-4">
-          {flagshipProjects.map((project) => (
+        {/* Clean Project Showcase */}
+        <div className="space-y-6">
+          {selectedProjects.map((project) => (
             <div
               key={project.id}
               onClick={() => onNavigate('project-detail', project.id)}
-              className="group p-6 rounded-2xl bg-white/85 dark:bg-[#1a1a1c]/85 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] transition shadow-xs hover:shadow cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+              className="group p-6 sm:p-7 rounded-2xl bg-white/85 dark:bg-[#1a1a1c]/85 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] transition shadow-xs hover:shadow cursor-pointer flex flex-col justify-between"
             >
-              <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="text-xs font-medium text-[#1a73e8] dark:text-[#8ab4f8]">
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8]">
                     {project.category}
                   </span>
-                  {project.liveUrl && (
-                    <span className="inline-flex items-center gap-1 text-[11px] text-[#137333] dark:text-[#81c995]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#34a853]" />
-                      Live Website
-                    </span>
-                  )}
                   {project.youtubeUrl && (
                     <span className="inline-flex items-center gap-1 text-[11px] text-[#c5221f] dark:text-[#f28b82]">
                       <Play className="w-3 h-3 fill-current" />
-                      Video Demo
+                      Video Walkthrough
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-bold text-[#202124] dark:text-white group-hover:text-[#1a73e8] dark:group-hover:text-[#8ab4f8] transition-colors mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#202124] dark:text-white group-hover:text-[#1a73e8] dark:group-hover:text-[#8ab4f8] transition-colors mb-2.5">
                   {project.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-[#5f6368] dark:text-[#9aa0a6] line-clamp-2 leading-relaxed mb-3">
+                <p className="text-xs sm:text-sm text-[#5f6368] dark:text-[#bdc1c6] leading-relaxed mb-4">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.slice(0, 4).map((tech, idx) => (
+                {/* Tech chips */}
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="text-[11px] px-2 py-0.5 rounded-md bg-[#f1f3f4] dark:bg-[#202124] text-[#3c4043] dark:text-[#bdc1c6]"
+                      className="text-[11px] px-2.5 py-1 rounded-md bg-[#f1f3f4] dark:bg-[#202124] text-[#3c4043] dark:text-[#bdc1c6]"
                     >
                       {tech}
                     </span>
@@ -286,20 +144,320 @@ export default function HomePage({ onNavigate }) {
                 </div>
               </div>
 
-              <div className="shrink-0 flex items-center gap-2 pt-2 md:pt-0">
+              {/* Bottom Project Actions: ONLY GitHub Source Code + Read Project Breakdown */}
+              <div 
+                className="pt-4 border-t border-[#dadce0]/70 dark:border-[#3c4043]/70 flex flex-wrap items-center justify-between gap-3"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#f1f3f4] dark:bg-[#202124] hover:bg-[#e8eaed] dark:hover:bg-[#303134] text-xs font-medium text-[#202124] dark:text-white border border-[#dadce0] dark:border-[#3c4043] transition"
+                >
+                  <Github className="w-3.5 h-3.5" />
+                  <span>GitHub Source Code</span>
+                </a>
+
                 <button
                   onClick={() => onNavigate('project-detail', project.id)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1a73e8] text-white text-xs font-medium hover:bg-[#1557b0] transition shadow-xs cursor-pointer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline cursor-pointer group-hover:translate-x-1 transition-transform"
                 >
-                  <span>Open Dedicated Page</span>
+                  <span>Read project page</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
           ))}
         </div>
+
+        <div className="mt-8 text-center">
+          <button
+            onClick={() => onNavigate('projects')}
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/90 dark:bg-[#202124]/90 border border-[#dadce0] dark:border-[#3c4043] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] text-xs font-medium text-[#202124] dark:text-white shadow-xs transition cursor-pointer"
+          >
+            <span>Browse Complete 25-Repository Directory</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#1a73e8] dark:text-[#8ab4f8]" />
+          </button>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 02 / EXPERIENCE & EDUCATION                                  */}
+      {/* ============================================================ */}
+      <section id="experience" className="scroll-mt-24">
+        <div className="mb-8 pb-4 border-b border-[#dadce0] dark:border-[#3c4043]">
+          <span className="text-xs font-mono font-semibold text-[#1a73e8] dark:text-[#8ab4f8] uppercase tracking-wider block mb-1">
+            02 / Experience & Education
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#202124] dark:text-white">
+            Where I've worked and studied.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Work Experience */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-white/85 dark:bg-[#1a1a1c]/85 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between text-xs text-[#5f6368] dark:text-[#9aa0a6] mb-2 font-mono">
+                <span>June 2026 — September 2026</span>
+                <span>United States</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-[#202124] dark:text-white mb-1">
+                Software Developer
+              </h3>
+              <div className="text-sm font-semibold text-[#137333] dark:text-[#81c995] mb-4">
+                Universal SelfCare
+              </div>
+
+              <ul className="space-y-2 text-xs sm:text-sm text-[#3c4043] dark:text-[#bdc1c6] leading-relaxed list-disc list-inside">
+                <li>Engineered responsive full-stack software features, healthcare workflows, and digital user experiences.</li>
+                <li>Collaborated on API development, data management, and frontend components to ensure high performance and reliability.</li>
+                <li>Delivered production-grade code adhering to modern web development, type safety, and accessibility standards.</li>
+              </ul>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-[#dadce0]/70 dark:border-[#3c4043]/70">
+              <button
+                onClick={() => onNavigate('resume')}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline cursor-pointer"
+              >
+                <span>View full experience details on Resume page</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Academic Background */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-white/85 dark:bg-[#1a1a1c]/85 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between text-xs text-[#5f6368] dark:text-[#9aa0a6] mb-2 font-mono">
+                <span>Undergraduate Degree</span>
+                <span className="font-semibold text-[#1a73e8] dark:text-[#8ab4f8]">GPA: 3.24 / 4.0</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-[#202124] dark:text-white mb-1">
+                Bachelor's Degree
+              </h3>
+              <div className="text-sm font-medium text-[#5f6368] dark:text-[#9aa0a6] mb-4">
+                Software Engineering & Artificial Intelligence Focus
+              </div>
+
+              <p className="text-xs sm:text-sm text-[#3c4043] dark:text-[#bdc1c6] leading-relaxed mb-4">
+                Graduated with a cumulative <strong>3.24 GPA</strong>. Academic background emphasizing algorithms, data structures, neural networks, machine learning theory, systems architecture, and database design.
+              </p>
+
+              <div className="flex flex-wrap gap-1.5">
+                {['Algorithms', 'Neural Networks', 'Machine Learning', 'Data Structures', 'Database Systems', 'Computer Vision'].map((course) => (
+                  <span
+                    key={course}
+                    className="text-[11px] px-2 py-0.5 rounded bg-[#f1f3f4] dark:bg-[#202124] text-[#3c4043] dark:text-[#bdc1c6]"
+                  >
+                    {course}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-[#dadce0]/70 dark:border-[#3c4043]/70">
+              <button
+                onClick={() => onNavigate('resume')}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline cursor-pointer"
+              >
+                <span>Inspect academic credentials & PDF CV</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 03 / TECHNICAL SKILLS — My toolkit.                           */}
+      {/* ============================================================ */}
+      <section id="skills" className="scroll-mt-24">
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#dadce0] dark:border-[#3c4043]">
+          <div>
+            <span className="text-xs font-mono font-semibold text-[#1a73e8] dark:text-[#8ab4f8] uppercase tracking-wider block mb-1">
+              03 / Technical Skills
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#202124] dark:text-white">
+              My toolkit.
+            </h2>
+            <p className="text-xs sm:text-sm text-[#5f6368] dark:text-[#9aa0a6] mt-1 max-w-xl">
+              Languages, frameworks, ML tools, and databases applied across public GitHub codebases and industry software.
+            </p>
+          </div>
+
+          <button
+            onClick={() => onNavigate('skills')}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline cursor-pointer shrink-0"
+          >
+            <span>Explore all verified skills</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {/* 4 Clean Categories Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Languages */}
+          <div className="p-5 rounded-2xl bg-white/80 dark:bg-[#1a1a1c]/80 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] shadow-xs">
+            <h3 className="text-xs font-mono uppercase tracking-wider font-bold text-[#1a73e8] dark:text-[#8ab4f8] mb-3">
+              Languages
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-[#3c4043] dark:text-[#bdc1c6]">
+              <li className="font-medium text-[#202124] dark:text-white">Python</li>
+              <li className="font-medium text-[#202124] dark:text-white">JavaScript (ES6+)</li>
+              <li className="font-medium text-[#202124] dark:text-white">SQL (T-SQL, MySQL)</li>
+              <li>C / C++</li>
+              <li>HTML5 & CSS3</li>
+            </ul>
+          </div>
+
+          {/* Web & Databases */}
+          <div className="p-5 rounded-2xl bg-white/80 dark:bg-[#1a1a1c]/80 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] shadow-xs">
+            <h3 className="text-xs font-mono uppercase tracking-wider font-bold text-[#137333] dark:text-[#81c995] mb-3">
+              Web & Databases
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-[#3c4043] dark:text-[#bdc1c6]">
+              <li className="font-medium text-[#202124] dark:text-white">React.js</li>
+              <li className="font-medium text-[#202124] dark:text-white">Flask & FastAPI</li>
+              <li>Node.js</li>
+              <li>PostgreSQL & MySQL</li>
+              <li>REST APIs & JSON-RPC</li>
+            </ul>
+          </div>
+
+          {/* Machine Learning & AI */}
+          <div className="p-5 rounded-2xl bg-white/80 dark:bg-[#1a1a1c]/80 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] shadow-xs">
+            <h3 className="text-xs font-mono uppercase tracking-wider font-bold text-[#b06000] dark:text-[#fdd663] mb-3">
+              Machine Learning & AI
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-[#3c4043] dark:text-[#bdc1c6]">
+              <li className="font-medium text-[#202124] dark:text-white">PyTorch</li>
+              <li className="font-medium text-[#202124] dark:text-white">TensorFlow</li>
+              <li>OpenCV & Vision Models</li>
+              <li>Multi-LLM Orchestration</li>
+              <li>Scikit-learn & NumPy</li>
+            </ul>
+          </div>
+
+          {/* Infrastructure & Tools */}
+          <div className="p-5 rounded-2xl bg-white/80 dark:bg-[#1a1a1c]/80 backdrop-blur-sm border border-[#dadce0] dark:border-[#3c4043] shadow-xs">
+            <h3 className="text-xs font-mono uppercase tracking-wider font-bold text-[#c5221f] dark:text-[#f28b82] mb-3">
+              Tools & Infra
+            </h3>
+            <ul className="space-y-1.5 text-xs sm:text-sm text-[#3c4043] dark:text-[#bdc1c6]">
+              <li className="font-medium text-[#202124] dark:text-white">Git & GitHub</li>
+              <li>Docker</li>
+              <li>GitHub Actions CI/CD</li>
+              <li>WebGL & 3D Canvas</li>
+              <li>Vite & Tailwind CSS</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 04 / ABOUT — A little about me.                               */}
+      {/* ============================================================ */}
+      <section id="about" className="scroll-mt-24">
+        <div className="mb-8 pb-4 border-b border-[#dadce0] dark:border-[#3c4043]">
+          <span className="text-xs font-mono font-semibold text-[#1a73e8] dark:text-[#8ab4f8] uppercase tracking-wider block mb-1">
+            04 / About
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#202124] dark:text-white">
+            A little about me.
+          </h2>
+        </div>
+
+        <div className="bg-white/85 dark:bg-[#1a1a1c]/85 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#dadce0] dark:border-[#3c4043] shadow-xs space-y-4 text-sm sm:text-base text-[#3c4043] dark:text-[#bdc1c6] leading-relaxed">
+          <p>
+            I'm a software developer with industry experience at <strong>Universal SelfCare (June 2026 – Sep 2026)</strong> and an academic foundation in computer science and artificial intelligence (Bachelor's GPA: <strong>3.24</strong>). I enjoy turning complex computational ideas into intuitive, dependable technology solutions.
+          </p>
+          <p>
+            My engineering work spans applied artificial intelligence, deep learning models, data science pipelines, database architecture, and interactive web simulations. Whether training autonomous driving agents in WebGL, evaluating consensus across 10 free LLMs in parallel, or architecting healthcare triage networks with graph proximity, I prioritize clean system architecture and measurable real-world utility.
+          </p>
+          <p>
+            I believe software should be built with craftsmanship: thoughtful user interfaces, transparent algorithms, robust error handling, and zero unnecessary bloat.
+          </p>
+
+          <div className="pt-4 flex flex-wrap items-center gap-4">
+            <button
+              onClick={() => onNavigate('about')}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline cursor-pointer"
+            >
+              <span>Read complete engineering philosophy & 7 pillars</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+            <span className="text-[#dadce0] dark:text-[#3c4043]">•</span>
+            <button
+              onClick={() => onNavigate('games')}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#34a853] dark:text-[#81c995] hover:underline cursor-pointer"
+            >
+              <span>Try 5 interactive arcade games</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 05 / CONTACT — Let's talk.                                   */}
+      {/* ============================================================ */}
+      <section id="contact" className="scroll-mt-24">
+        <div className="mb-8 pb-4 border-b border-[#dadce0] dark:border-[#3c4043]">
+          <span className="text-xs font-mono font-semibold text-[#1a73e8] dark:text-[#8ab4f8] uppercase tracking-wider block mb-1">
+            05 / Contact
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#202124] dark:text-white">
+            Let's talk.
+          </h2>
+        </div>
+
+        <div className="bg-white/85 dark:bg-[#1a1a1c]/85 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-[#dadce0] dark:border-[#3c4043] shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <p className="text-sm sm:text-base text-[#3c4043] dark:text-[#bdc1c6] leading-relaxed mb-4">
+              I'm open to software engineering and artificial intelligence opportunities, research discussions, or technical consultations. Feel free to connect or send a message.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3 text-xs text-[#5f6368] dark:text-[#9aa0a6]">
+              <a
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#f1f3f4] dark:bg-[#202124] hover:bg-[#e8eaed] dark:hover:bg-[#303134] text-[#202124] dark:text-white transition"
+              >
+                <Github className="w-3.5 h-3.5" />
+                <span>github.com/VShaunak</span>
+              </a>
+
+              <a
+                href={siteConfig.linkedin || "https://www.linkedin.com/in/shaunak-vidwans/"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#f1f3f4] dark:bg-[#202124] hover:bg-[#e8eaed] dark:hover:bg-[#303134] text-[#202124] dark:text-white transition"
+              >
+                <Linkedin className="w-3.5 h-3.5" />
+                <span>LinkedIn Profile</span>
+              </a>
+
+              <span>• Location: United States</span>
+            </div>
+          </div>
+
+          <div className="shrink-0 w-full md:w-auto">
+            <button
+              onClick={() => onNavigate('contact')}
+              className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-xs font-semibold shadow-xs hover:shadow transition cursor-pointer"
+            >
+              <Send className="w-4 h-4" />
+              <span>Send a Message</span>
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   );
 }
-
