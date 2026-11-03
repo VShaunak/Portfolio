@@ -10,7 +10,7 @@ const ICO_VERTS = [
   [ PHI, 0, -1], [ PHI, 0,  1], [-PHI, 0, -1], [-PHI, 0,  1]
 ].map(([x, y, z]) => {
   const len = Math.hypot(x, y, z);
-  return [x / len, y / len, z / len]; // Normalized unit sphere
+  return [x / len, y / len, z / len];
 });
 
 const ICO_FACES = [
@@ -32,22 +32,20 @@ const OCTA_FACES = [
   [5, 2, 0], [5, 1, 2], [5, 3, 1], [5, 0, 3]
 ];
 
-// Polyhedron 3: Solid Dodecahedron Dual / Crystalline Hexagonal Prism
+// Polyhedron 3: Solid Crystalline Hexagonal Prism (8 vertices, 12 faces)
 const PRISM_VERTS = [
-  [0, 1.2, 0],
-  [Math.cos(0), 0.3, Math.sin(0)],
-  [Math.cos(Math.PI / 3), 0.3, Math.sin(Math.PI / 3)],
-  [Math.cos(2 * Math.PI / 3), 0.3, Math.sin(2 * Math.PI / 3)],
-  [Math.cos(Math.PI), 0.3, Math.sin(Math.PI)],
-  [Math.cos(4 * Math.PI / 3), 0.3, Math.sin(4 * Math.PI / 3)],
-  [Math.cos(5 * Math.PI / 3), 0.3, Math.sin(5 * Math.PI / 3)],
-  [0, -1.2, 0]
+  [0, 1.4, 0],
+  [Math.cos(0), 0.2, Math.sin(0)],
+  [Math.cos(Math.PI / 3), 0.2, Math.sin(Math.PI / 3)],
+  [Math.cos(2 * Math.PI / 3), 0.2, Math.sin(2 * Math.PI / 3)],
+  [Math.cos(Math.PI), 0.2, Math.sin(Math.PI)],
+  [Math.cos(4 * Math.PI / 3), 0.2, Math.sin(4 * Math.PI / 3)],
+  [Math.cos(5 * Math.PI / 3), 0.2, Math.sin(5 * Math.PI / 3)],
+  [0, -1.4, 0]
 ];
 
 const PRISM_FACES = [
-  // Top pyramidal fan
   [0, 1, 2], [0, 2, 3], [0, 3, 4], [0, 4, 5], [0, 5, 6], [0, 6, 1],
-  // Bottom pyramidal fan
   [7, 2, 1], [7, 3, 2], [7, 4, 3], [7, 5, 4], [7, 6, 5], [7, 1, 6]
 ];
 
@@ -70,7 +68,6 @@ export default function SolidGeometryBackground() {
     };
     window.addEventListener('resize', handleResize);
 
-    // Mouse coordinates with smoothing
     const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
     const handleMouseMove = (e) => {
       mouse.targetX = (e.clientX / width) * 2 - 1;
@@ -97,69 +94,84 @@ export default function SolidGeometryBackground() {
       return [x * cos - y * sin, x * sin + y * cos, z];
     };
 
-    // Virtual Directional Light Vector (from upper-left, slightly forward)
-    const lightSource = [-0.55, -0.75, 0.75];
+    // Virtual Directional Light Vector
+    const lightSource = [-0.6, -0.8, 0.8];
     const lightLen = Math.hypot(...lightSource);
     const lightDir = lightSource.map((v) => v / lightLen);
 
     let time = 0;
 
     const render = () => {
-      time += 0.005;
-      // Smooth mouse damping
-      mouse.x += (mouse.targetX - mouse.x) * 0.04;
-      mouse.y += (mouse.targetY - mouse.y) * 0.04;
+      time += 0.007;
+      mouse.x += (mouse.targetX - mouse.x) * 0.05;
+      mouse.y += (mouse.targetY - mouse.y) * 0.05;
 
       ctx.clearRect(0, 0, width, height);
 
       const isDark = document.documentElement.classList.contains('dark');
 
-      // Configuration for 3 distinct solid geometric objects
+      // 1. Draw Subtle Isometric Background Grid
+      const gridSize = 48;
+      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)';
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // 2. Solid Geometric Entities with High Contrast & Shaded Facets
       const solidEntities = [
         {
-          // Primary Solid Polyhedron: Upper-Right Hero zone
+          // Hero Solid Polyhedron (Prominent in Hero Viewport)
           mesh: { verts: ICO_VERTS, faces: ICO_FACES },
-          scale: Math.min(width, height) * 0.23,
+          scale: Math.min(width, height) * (width < 640 ? 0.32 : 0.28),
           pos: [
-            width * 0.76 + mouse.x * 25,
-            height * 0.34 + Math.sin(time * 0.8) * 16 + mouse.y * 20
+            width * (width < 768 ? 0.75 : 0.82) + mouse.x * 30,
+            height * 0.30 + Math.sin(time * 0.8) * 16 + mouse.y * 25
           ],
-          rot: [time * 0.45, time * 0.65 + mouse.x * 0.35, time * 0.25 + mouse.y * 0.25],
-          opacity: isDark ? 0.88 : 0.95
+          rot: [time * 0.45, time * 0.65 + mouse.x * 0.4, time * 0.3 + mouse.y * 0.3],
+          colorScheme: 'primary'
         },
         {
-          // Secondary Solid Octahedron: Mid-Left zone
+          // Secondary Solid Octahedron (Mid-Left)
           mesh: { verts: OCTA_VERTS, faces: OCTA_FACES },
-          scale: Math.min(width, height) * 0.15,
+          scale: Math.min(width, height) * (width < 640 ? 0.20 : 0.18),
           pos: [
-            width * 0.14 - mouse.x * 20,
-            height * 0.66 + Math.cos(time * 0.7) * 15 - mouse.y * 15
+            width * (width < 768 ? 0.15 : 0.12) - mouse.x * 25,
+            height * 0.65 + Math.cos(time * 0.7) * 18 - mouse.y * 20
           ],
-          rot: [-time * 0.55, -time * 0.4 + mouse.x * 0.3, time * 0.45],
-          opacity: isDark ? 0.78 : 0.88
+          rot: [-time * 0.5, -time * 0.4 + mouse.x * 0.35, time * 0.45],
+          colorScheme: 'accent'
         },
         {
-          // Tertiary Solid Crystalline Prism: Lower-Right zone
+          // Tertiary Solid Prism (Lower Right)
           mesh: { verts: PRISM_VERTS, faces: PRISM_FACES },
-          scale: Math.min(width, height) * 0.13,
+          scale: Math.min(width, height) * 0.16,
           pos: [
-            width * 0.85 + mouse.x * 15,
-            height * 0.85 + Math.sin(time * 0.6) * 14
+            width * 0.86 + mouse.x * 20,
+            height * 0.82 + Math.sin(time * 0.6) * 15
           ],
-          rot: [time * 0.38, time * 0.48, -time * 0.55],
-          opacity: isDark ? 0.68 : 0.78
+          rot: [time * 0.4, time * 0.55, -time * 0.5],
+          colorScheme: 'secondary'
         }
       ];
 
       solidEntities.forEach((entity) => {
-        const { mesh, scale, pos, rot, opacity } = entity;
+        const { mesh, scale, pos, rot, colorScheme } = entity;
 
         // Transform vertices
         const transformedVerts = mesh.verts.map((v) => {
           let p = rotateX(v, rot[0]);
           p = rotateY(p, rot[1]);
           p = rotateZ(p, rot[2]);
-          // Orthographic projection with slight depth
           return [
             pos[0] + p[0] * scale,
             pos[1] + p[1] * scale,
@@ -167,29 +179,24 @@ export default function SolidGeometryBackground() {
           ];
         });
 
-        // Compute faces with lighting and depth
+        // Compute faces with normals and lighting
         const faceData = mesh.faces.map((faceIndices) => {
           const v0 = transformedVerts[faceIndices[0]];
           const v1 = transformedVerts[faceIndices[1]];
           const v2 = transformedVerts[faceIndices[2]];
 
-          // Surface edge vectors
           const e1 = [v1[0] - v0[0], v1[1] - v0[1], v1[2] - v0[2]];
           const e2 = [v2[0] - v0[0], v2[1] - v0[1], v2[2] - v0[2]];
 
-          // Cross product for outward normal
           const nx = e1[1] * e2[2] - e1[2] * e2[1];
           const ny = e1[2] * e2[0] - e1[0] * e2[2];
           const nz = e1[0] * e2[1] - e1[1] * e2[0];
           const nlen = Math.hypot(nx, ny, nz) || 1;
           const normal = [nx / nlen, ny / nlen, nz / nlen];
 
-          // Average depth for Painter's algorithm
           const avgZ = (v0[2] + v1[2] + v2[2]) / 3;
-
-          // Compute directional light illumination
           const dot = normal[0] * lightDir[0] + normal[1] * lightDir[1] + normal[2] * lightDir[2];
-          const intensity = Math.min(1, Math.max(0, 0.28 + dot * 0.72));
+          const intensity = Math.min(1, Math.max(0, 0.25 + dot * 0.75));
 
           return {
             points: [v0, v1, v2],
@@ -200,12 +207,12 @@ export default function SolidGeometryBackground() {
           };
         });
 
-        // Sort faces from back to front (Painter's Algorithm for solid rendering)
+        // Painter's algorithm: sort back to front
         faceData.sort((a, b) => a.avgZ - b.avgZ);
 
-        // Render solid polygonal facets
+        // Render solid facets with clear contrast and bevel lines
         faceData.forEach(({ points, intensity, isFrontFacing }) => {
-          if (!isFrontFacing) return; // Backface culling for crisp solid depth
+          if (!isFrontFacing) return;
 
           ctx.beginPath();
           ctx.moveTo(points[0][0], points[0][1]);
@@ -214,28 +221,64 @@ export default function SolidGeometryBackground() {
           ctx.closePath();
 
           if (isDark) {
-            // Dark Mode Solid Geometry: Sleek titanium / deep slate with indigo-blue ambient light
-            const r = Math.round(20 + intensity * 46);
-            const g = Math.round(28 + intensity * 58);
-            const b = Math.round(45 + intensity * 90);
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.52 * opacity})`;
+            // Dark Mode: Deep metallic geometric solids with luminous cyan/blue edges
+            let r, g, b, alpha;
+            if (colorScheme === 'primary') {
+              // Electric Indigo / Cobalt Solid
+              r = Math.round(25 + intensity * 65);
+              g = Math.round(45 + intensity * 85);
+              b = Math.round(95 + intensity * 155);
+              alpha = 0.75;
+            } else if (colorScheme === 'accent') {
+              // Emerald / Teal Solid
+              r = Math.round(15 + intensity * 40);
+              g = Math.round(55 + intensity * 115);
+              b = Math.round(65 + intensity * 125);
+              alpha = 0.70;
+            } else {
+              // Violet / Slate Solid
+              r = Math.round(40 + intensity * 80);
+              g = Math.round(30 + intensity * 60);
+              b = Math.round(80 + intensity * 130);
+              alpha = 0.65;
+            }
+
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
             ctx.fill();
 
-            // Crisp subtle facet bevel edges
-            ctx.strokeStyle = `rgba(138, 180, 248, ${0.16 + intensity * 0.26})`;
-            ctx.lineWidth = 1;
+            // Crisp edge definition
+            ctx.strokeStyle = `rgba(147, 197, 253, ${0.35 + intensity * 0.45})`;
+            ctx.lineWidth = 1.2;
             ctx.stroke();
           } else {
-            // Light Mode Solid Geometry: Architectural alabaster / porcelain with Google Blue tint
-            const r = Math.round(248 - (1 - intensity) * 34);
-            const g = Math.round(250 - (1 - intensity) * 28);
-            const b = Math.round(254 - (1 - intensity) * 16);
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.75 * opacity})`;
+            // Light Mode: High-contrast architectural porcelain / vibrant slate-blue geometry
+            let r, g, b, alpha;
+            if (colorScheme === 'primary') {
+              // Crisp Google Blue / Slate Solid
+              r = Math.round(195 - (1 - intensity) * 85);
+              g = Math.round(218 - (1 - intensity) * 80);
+              b = Math.round(250 - (1 - intensity) * 60);
+              alpha = 0.88;
+            } else if (colorScheme === 'accent') {
+              // Mint / Slate Solid
+              r = Math.round(200 - (1 - intensity) * 80);
+              g = Math.round(235 - (1 - intensity) * 75);
+              b = Math.round(225 - (1 - intensity) * 70);
+              alpha = 0.82;
+            } else {
+              // Lavender / Slate Solid
+              r = Math.round(215 - (1 - intensity) * 75);
+              g = Math.round(215 - (1 - intensity) * 70);
+              b = Math.round(245 - (1 - intensity) * 60);
+              alpha = 0.80;
+            }
+
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
             ctx.fill();
 
-            // Subtle border definition
-            ctx.strokeStyle = `rgba(26, 115, 232, ${0.12 + intensity * 0.22})`;
-            ctx.lineWidth = 1;
+            // Distinct facet border
+            ctx.strokeStyle = `rgba(26, 115, 232, ${0.4 + intensity * 0.45})`;
+            ctx.lineWidth = 1.2;
             ctx.stroke();
           }
         });
@@ -255,23 +298,48 @@ export default function SolidGeometryBackground() {
 
   return (
     <div
-      className="fixed inset-0 pointer-events-none -z-10 overflow-hidden"
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
       aria-hidden="true"
     >
-      {/* 3D Solid Geometry Realtime Canvas */}
+      {/* Solid Geometric Background Artwork (SVG Vector Polyhedra) */}
+      <div className="absolute top-12 right-6 md:right-24 w-[360px] md:w-[480px] h-[360px] md:h-[480px] opacity-25 dark:opacity-20 animate-float-slow pointer-events-none">
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <defs>
+            <linearGradient id="solidGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#1a73e8" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#8ab4f8" stopOpacity="0.3" />
+            </linearGradient>
+            <linearGradient id="solidGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#1e8e3e" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="#81c995" stopOpacity="0.2" />
+            </linearGradient>
+            <linearGradient id="solidGrad3" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%" stopColor="#f9ab00" stopOpacity="0.7" />
+              <stop offset="100%" stopColor="#fde293" stopOpacity="0.2" />
+            </linearGradient>
+          </defs>
+          {/* Solid 3D Faceted Geometry Planes */}
+          <polygon points="200,40 320,120 200,200 80,120" fill="url(#solidGrad1)" stroke="#1a73e8" strokeWidth="1.5" />
+          <polygon points="80,120 200,200 200,340 80,260" fill="url(#solidGrad2)" stroke="#1a73e8" strokeWidth="1.5" />
+          <polygon points="320,120 200,200 200,340 320,260" fill="url(#solidGrad3)" stroke="#1a73e8" strokeWidth="1.5" />
+          <polygon points="200,40 260,20 320,120" fill="#1a73e8" fillOpacity="0.25" stroke="#1a73e8" strokeWidth="1" />
+          <polygon points="200,40 140,20 80,120" fill="#8ab4f8" fillOpacity="0.25" stroke="#1a73e8" strokeWidth="1" />
+        </svg>
+      </div>
+
+      {/* Floating Secondary Geometric Cube on Lower Left */}
+      <div className="absolute bottom-20 left-8 md:left-20 w-[240px] md:w-[320px] h-[240px] md:h-[320px] opacity-20 dark:opacity-15 animate-float-slow pointer-events-none" style={{ animationDelay: '-4s' }}>
+        <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <polygon points="150,30 240,90 150,150 60,90" fill="#1a73e8" fillOpacity="0.3" stroke="#1a73e8" strokeWidth="1.2" />
+          <polygon points="60,90 150,150 150,250 60,190" fill="#4285f4" fillOpacity="0.45" stroke="#1a73e8" strokeWidth="1.2" />
+          <polygon points="240,90 150,150 150,250 240,190" fill="#34a853" fillOpacity="0.35" stroke="#34a853" strokeWidth="1.2" />
+        </svg>
+      </div>
+
+      {/* 3D Realtime Animated Solid Geometry Canvas */}
       <canvas
         ref={canvasRef}
         className="w-full h-full block"
-      />
-
-      {/* Subtle Architectural Grid Overlay for Depth */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(#dadce0_1px,transparent_1px)] dark:bg-[radial-gradient(#2d3748_1px,transparent_1px)] [background-size:36px_36px] opacity-35"
-      />
-
-      {/* Soft Vignette / Ambient Fade to protect typography readability */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/70 dark:from-[#121212]/60 dark:via-transparent dark:to-[#121212]/70"
       />
     </div>
   );

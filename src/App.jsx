@@ -73,7 +73,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#ffffff] dark:bg-[#121212] text-[#202124] dark:text-[#e8eaed] selection:bg-[#1a73e8] selection:text-white transition-colors duration-200 relative">
+    <div className="min-h-screen bg-[#f8f9fa] dark:bg-[#0c0f14] text-[#202124] dark:text-[#e8eaed] selection:bg-[#1a73e8] selection:text-white transition-colors duration-200 relative">
       {/* 3D Solid Geometry Animated Background */}
       <SolidGeometryBackground />
 
@@ -87,7 +87,7 @@ export default function App() {
 
       {/* Render dedicated Project Page or Homepage */}
       {currentProjectId ? (
-        <main className="pt-8">
+        <main className="relative z-10 pt-8">
           <ProjectPage
             projectId={currentProjectId}
             onNavigateBack={() => handleNavigateBack('projects')}
@@ -95,7 +95,7 @@ export default function App() {
           />
         </main>
       ) : (
-        <main>
+        <main className="relative z-10">
           {/* 1. Google-Style Calm Minimalist Hero */}
           <Hero
             onOpenResume={() => {
