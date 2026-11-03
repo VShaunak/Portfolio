@@ -3,35 +3,21 @@ import { Menu, X, Moon, Sun, ArrowLeft, Gamepad2, FileText, Send, Sparkles } fro
 import { Github } from './Icons';
 import { siteConfig } from '../config/siteConfig';
 
-export default function Navbar({ darkMode, setDarkMode, isProjectPage, onNavigateHome }) {
+export default function Navbar({ darkMode, setDarkMode, currentPage, onNavigate }) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (isProjectPage) return;
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      const sections = ['hero', 'about', 'skills', 'projects', 'games', 'resume', 'contact'];
-      const scrollPos = window.scrollY + 140;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isProjectPage]);
+  }, []);
 
   const navLinks = [
-    { id: 'hero', label: 'Home' },
+    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
@@ -42,27 +28,15 @@ export default function Navbar({ darkMode, setDarkMode, isProjectPage, onNavigat
 
   const handleLinkClick = (id) => {
     setMobileMenuOpen(false);
-    if (isProjectPage) {
-      if (onNavigateHome) onNavigateHome(id);
-      return;
-    }
-
-    const element = document.getElementById(id);
-    if (element) {
-      const navOffset = 70;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+    if (onNavigate) {
+      onNavigate(id);
     }
   };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        isScrolled || isProjectPage
+        isScrolled || currentPage !== 'home'
           ? 'bg-white/95 dark:bg-[#121212]/95 backdrop-blur-md border-b border-[#dadce0] dark:border-[#3c4043] shadow-xs'
           : 'bg-white/80 dark:bg-[#121212]/80 backdrop-blur-sm'
       }`}
@@ -70,7 +44,7 @@ export default function Navbar({ darkMode, setDarkMode, isProjectPage, onNavigat
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand / Logo */}
         <button
-          onClick={() => handleLinkClick('hero')}
+          onClick={() => handleLinkClick('home')}
           className="flex items-center gap-2.5 text-left cursor-pointer group focus:outline-none"
         >
           <div className="w-8 h-8 rounded-full bg-[#1a73e8] flex items-center justify-center text-white font-semibold text-sm shadow-sm group-hover:bg-[#1557b0] transition-colors">
@@ -89,14 +63,14 @@ export default function Navbar({ darkMode, setDarkMode, isProjectPage, onNavigat
         {/* Center / Right Navigation Links */}
         <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive = !isProjectPage && activeSection === link.id;
+            const isActive = currentPage === link.id || (link.id === 'projects' && currentPage === 'project-detail');
             return (
               <button
                 key={link.id}
                 onClick={() => handleLinkClick(link.id)}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                   isActive
-                    ? 'text-[#1a73e8] dark:text-[#8ab4f8] bg-[#e8f0fe] dark:bg-[#1a2e4c]'
+                    ? 'text-[#1a73e8] dark:text-[#8ab4f8] bg-[#e8f0fe] dark:bg-[#1a2e4c] font-semibold'
                     : 'text-[#3c4043] dark:text-[#bdc1c6] hover:text-[#202124] dark:hover:text-[#ffffff] hover:bg-[#f1f3f4] dark:hover:bg-[#202124]'
                 }`}
               >
@@ -156,14 +130,14 @@ export default function Navbar({ darkMode, setDarkMode, isProjectPage, onNavigat
       {mobileMenuOpen && (
         <div className="sm:hidden bg-white dark:bg-[#121212] border-b border-[#dadce0] dark:border-[#3c4043] px-4 pt-2 pb-5 space-y-1 shadow-md">
           {navLinks.map((link) => {
-            const isActive = !isProjectPage && activeSection === link.id;
+            const isActive = currentPage === link.id || (link.id === 'projects' && currentPage === 'project-detail');
             return (
               <button
                 key={link.id}
                 onClick={() => handleLinkClick(link.id)}
                 className={`w-full text-left px-3.5 py-2 rounded-xl text-xs font-medium flex items-center justify-between ${
                   isActive
-                    ? 'text-[#1a73e8] dark:text-[#8ab4f8] bg-[#e8f0fe] dark:bg-[#1a2e4c]'
+                    ? 'text-[#1a73e8] dark:text-[#8ab4f8] bg-[#e8f0fe] dark:bg-[#1a2e4c] font-semibold'
                     : 'text-[#3c4043] dark:text-[#bdc1c6] hover:bg-[#f1f3f4] dark:hover:bg-[#202124]'
                 }`}
               >

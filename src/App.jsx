@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import SkillsPage from './pages/SkillsPage';
+import ProjectsPage from './pages/ProjectsPage';
 import ProjectPage from './pages/ProjectPage';
-import GameZone from './components/GameZone';
-import Resume from './components/Resume';
-import Contact from './components/Contact';
+import GamesPage from './pages/GamesPage';
+import ResumePage from './pages/ResumePage';
+import ContactPage from './pages/ContactPage';
 import Footer from './components/Footer';
 import SolidGeometryBackground from './components/SolidGeometryBackground';
-import { projectsData } from './data/projectsData';
+
+const parseRoute = (hash) => {
+  const clean = (hash || '').replace(/^#\/?/, '').trim();
+  if (!clean || clean === 'home' || clean === 'hero') {
+    return { page: 'home' };
+  }
+  if (clean.startsWith('project/')) {
+    const id = clean.replace('project/', '');
+    return { page: 'project-detail', projectId: id };
+  }
+  if (['about', 'skills', 'projects', 'games', 'resume', 'contact'].includes(clean)) {
+    return { page: clean };
+  }
+  return { page: 'home' };
+};
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -19,14 +33,7 @@ export default function App() {
     return false; // Google-style clean neutral light theme default
   });
 
-  // Track active project page from hash (#/project/:id)
-  const [currentProjectId, setCurrentProjectId] = useState(() => {
-    const hash = window.location.hash;
-    if (hash.startsWith('#/project/')) {
-      return hash.replace('#/project/', '');
-    }
-    return null;
-  });
+  const [route, setRoute] = useState(() => parseRoute(window.location.hash));
 
   useEffect(() => {
     if (darkMode) {
@@ -41,39 +48,26 @@ export default function App() {
   // Sync hash routing for GitHub Pages
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith('#/project/')) {
-        const id = hash.replace('#/project/', '');
-        setCurrentProjectId(id);
-      } else {
-        setCurrentProjectId(null);
-      }
+      setRoute(parseRoute(window.location.hash));
     };
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const handleSelectProject = (project) => {
-    const id = typeof project === 'string' ? project : project.id;
-    window.location.hash = `#/project/${id}`;
-    setCurrentProjectId(id);
+  const handleNavigate = (targetPage, extraId) => {
+    if (targetPage === 'project-detail' && extraId) {
+      window.location.hash = `#/project/${extraId}`;
+    } else if (targetPage === 'home') {
+      window.location.hash = '#/';
+    } else {
+      window.location.hash = `#/${targetPage}`;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleNavigateBack = (targetSection = 'projects') => {
-    window.location.hash = `#${targetSection}`;
-    setCurrentProjectId(null);
-    setTimeout(() => {
-      const el = document.getElementById(targetSection);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 50);
-  };
-
   return (
-    <div className="min-h-screen bg-[#f8f9fa] dark:bg-[#0c0f14] text-[#202124] dark:text-[#e8eaed] selection:bg-[#1a73e8] selection:text-white transition-colors duration-200 relative">
+    <div className="min-h-screen bg-[#f8f9fa] dark:bg-[#0c0f14] text-[#202124] dark:text-[#e8eaed] selection:bg-[#1a73e8] selection:text-white transition-colors duration-200 relative flex flex-col justify-between">
       {/* 3D Solid Geometry Animated Background */}
       <SolidGeometryBackground />
 
@@ -81,51 +75,51 @@ export default function App() {
       <Navbar
         darkMode={darkMode}
         setDarkMode={setDarkMode}
-        isProjectPage={Boolean(currentProjectId)}
-        onNavigateHome={(sectionId) => handleNavigateBack(sectionId || 'hero')}
+        currentPage={route.page}
+        onNavigate={handleNavigate}
       />
 
-      {/* Render dedicated Project Page or Homepage */}
-      {currentProjectId ? (
-        <main className="relative z-10 pt-8">
+      {/* Main Content Area: Separate Page for Each Navbar Tab */}
+      <main className="relative z-10 flex-grow">
+        {route.page === 'home' && (
+          <HomePage onNavigate={handleNavigate} />
+        )}
+
+        {route.page === 'about' && (
+          <AboutPage onNavigate={handleNavigate} />
+        )}
+
+        {route.page === 'skills' && (
+          <SkillsPage onNavigate={handleNavigate} />
+        )}
+
+        {route.page === 'projects' && (
+          <ProjectsPage onNavigate={handleNavigate} />
+        )}
+
+        {route.page === 'project-detail' && (
           <ProjectPage
-            projectId={currentProjectId}
-            onNavigateBack={() => handleNavigateBack('projects')}
-            onSelectProject={handleSelectProject}
+            projectId={route.projectId}
+            onNavigateBack={() => handleNavigate('projects')}
+            onSelectProject={(p) => handleNavigate('project-detail', p.id || p)}
           />
-        </main>
-      ) : (
-        <main className="relative z-10">
-          {/* 1. Google-Style Calm Minimalist Hero */}
-          <Hero
-            onOpenResume={() => {
-              const el = document.getElementById('resume');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-          />
+        )}
 
-          {/* 2. About Me Section */}
-          <About />
+        {route.page === 'games' && (
+          <GamesPage onNavigate={handleNavigate} />
+        )}
 
-          {/* 3. Verified Technology Stack */}
-          <Skills />
+        {route.page === 'resume' && (
+          <ResumePage onNavigate={handleNavigate} />
+        )}
 
-          {/* 4. Complete Repository Projects Catalog - Dedicated Page on click */}
-          <Projects onSelectProject={handleSelectProject} />
-
-          {/* 5. Game Zone (5 Original Interactive Games) */}
-          <GameZone />
-
-          {/* 6. Professional Resume Section */}
-          <Resume />
-
-          {/* 7. Contact Section */}
-          <Contact />
-        </main>
-      )}
+        {route.page === 'contact' && (
+          <ContactPage onNavigate={handleNavigate} />
+        )}
+      </main>
 
       {/* Clean Global Footer */}
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 }
