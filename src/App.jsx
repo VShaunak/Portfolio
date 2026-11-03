@@ -9,6 +9,7 @@ import GameZone from './components/GameZone';
 import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import SolidGeometryBackground from './components/SolidGeometryBackground';
 import { projectsData } from './data/projectsData';
 
 export default function App() {
@@ -72,7 +73,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#ffffff] dark:bg-[#121212] text-[#202124] dark:text-[#e8eaed] selection:bg-[#1a73e8] selection:text-white transition-colors duration-200">
+    <div className="min-h-screen bg-[#ffffff] dark:bg-[#121212] text-[#202124] dark:text-[#e8eaed] selection:bg-[#1a73e8] selection:text-white transition-colors duration-200 relative">
+      {/* 3D Solid Geometry Animated Background */}
+      <SolidGeometryBackground />
+
       {/* Top Navigation Bar */}
       <Navbar
         darkMode={darkMode}

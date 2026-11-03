@@ -1,108 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { ArrowRight, FileText, Send, Sparkles, Terminal, Code2, Compass } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, FileText, Send } from 'lucide-react';
 import { siteConfig } from '../config/siteConfig';
 
 export default function Hero({ onOpenResume }) {
-  const canvasRef = useRef(null);
-  const mouseRef = useRef({ x: -1000, y: -1000, radius: 100 });
-
-  // Minimalist, Calm, Ambient Particle Canvas (Google-inspired)
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animId;
-
-    const resize = () => {
-      canvas.width = canvas.parentElement.offsetWidth;
-      canvas.height = canvas.parentElement.offsetHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Subtle number of nodes for a serene, uncluttered aesthetic
-    const particleCount = Math.min(38, Math.floor((canvas.width * canvas.height) / 28000));
-    const particles = Array.from({ length: particleCount }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.28, // gentle ambient drift
-      vy: (Math.random() - 0.5) * 0.28,
-      radius: Math.random() * 1.5 + 1.2
-    }));
-
-    const handleMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouseRef.current.x = e.clientX - rect.left;
-      mouseRef.current.y = e.clientY - rect.top;
-    };
-
-    const handleMouseLeave = () => {
-      mouseRef.current.x = -1000;
-      mouseRef.current.y = -1000;
-    };
-
-    const parent = canvas.parentElement;
-    parent.addEventListener('mousemove', handleMouseMove);
-    parent.addEventListener('mouseleave', handleMouseLeave);
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const isDark = document.documentElement.classList.contains('dark');
-      const nodeColor = isDark ? 'rgba(138, 180, 248, ' : 'rgba(26, 115, 232, ';
-      const lineColor = isDark ? 'rgba(138, 180, 248, ' : 'rgba(26, 115, 232, ';
-
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        // Very gentle mouse influence
-        const dx = mouseRef.current.x - p.x;
-        const dy = mouseRef.current.y - p.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < mouseRef.current.radius && dist > 0) {
-          const force = (mouseRef.current.radius - dist) / mouseRef.current.radius;
-          p.x -= (dx / dist) * force * 0.6;
-          p.y -= (dy / dist) * force * 0.6;
-        }
-
-        // Draw node
-        ctx.fillStyle = `${nodeColor}0.25)`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Connect nearby nodes with calm, low-opacity strokes
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const distNodes = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (distNodes < 110) {
-            const opacity = (1 - distNodes / 110) * (isDark ? 0.12 : 0.08);
-            ctx.strokeStyle = `${lineColor}${opacity})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
-      });
-
-      animId = requestAnimationFrame(draw);
-    };
-
-    animId = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
-      parent.removeEventListener('mousemove', handleMouseMove);
-      parent.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
-
   const scrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -119,17 +19,12 @@ export default function Hero({ onOpenResume }) {
   return (
     <section
       id="hero"
-      className="relative min-h-[88vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-[#121212] transition-colors"
+      className="relative min-h-[88vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-transparent"
     >
-      {/* Background Interactive Ambient Visualizer */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <canvas ref={canvasRef} className="w-full h-full block opacity-80" />
-      </div>
-
       {/* Main Content Container */}
       <div className="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center">
         {/* Google-Style Pill Status Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f1f3f4] dark:bg-[#202124] text-[#3c4043] dark:text-[#bdc1c6] border border-[#dadce0] dark:border-[#3c4043] text-xs font-medium tracking-normal mb-8 shadow-xs">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-[#202124]/80 backdrop-blur-sm text-[#3c4043] dark:text-[#bdc1c6] border border-[#dadce0] dark:border-[#3c4043] text-xs font-medium tracking-normal mb-8 shadow-xs">
           <span className="w-2 h-2 rounded-full bg-[#34a853]" />
           <span>Universal SelfCare: Software Developer (June 2026 – Sep 2026)</span>
         </div>
@@ -171,7 +66,7 @@ export default function Hero({ onOpenResume }) {
           {/* Button 2: View My Resume */}
           <button
             onClick={() => scrollTo('resume')}
-            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white dark:bg-[#202124] hover:bg-[#f8f9fa] dark:hover:bg-[#303134] text-[#202124] dark:text-[#ffffff] border border-[#dadce0] dark:border-[#3c4043] text-sm font-medium shadow-xs transition-colors cursor-pointer"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/90 dark:bg-[#202124]/90 hover:bg-white dark:hover:bg-[#303134] text-[#202124] dark:text-[#ffffff] border border-[#dadce0] dark:border-[#3c4043] text-sm font-medium shadow-xs transition-colors cursor-pointer"
           >
             <FileText className="w-4 h-4 text-[#1a73e8] dark:text-[#8ab4f8]" />
             <span>View My Resume</span>
@@ -180,7 +75,7 @@ export default function Hero({ onOpenResume }) {
           {/* Button 3: Contact Me */}
           <button
             onClick={() => scrollTo('contact')}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#f1f3f4] dark:bg-[#202124] hover:bg-[#e8eaed] dark:hover:bg-[#303134] text-[#3c4043] dark:text-[#bdc1c6] text-sm font-medium transition-colors cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/80 dark:bg-[#202124]/80 hover:bg-white dark:hover:bg-[#303134] text-[#3c4043] dark:text-[#bdc1c6] border border-[#dadce0]/80 dark:border-[#3c4043] text-sm font-medium transition-colors cursor-pointer"
           >
             <Send className="w-4 h-4 text-[#5f6368] dark:text-[#9aa0a6]" />
             <span>Contact Me</span>

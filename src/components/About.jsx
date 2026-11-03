@@ -48,7 +48,7 @@ export default function About() {
           return (
             <div
               key={pillar.id}
-              className="group relative bg-white dark:bg-slate-900/90 rounded-2xl p-6 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-indigo-500/40 dark:hover:border-indigo-500/40 transition-all duration-300 flex flex-col justify-between"
+              className="group relative bg-white/85 dark:bg-[#1a1a1c]/85 backdrop-blur-sm rounded-2xl p-6 border border-[#dadce0] dark:border-[#3c4043] shadow-xs hover:shadow-md hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] transition-all duration-200 flex flex-col justify-between"
             >
               <div>
                 {/* Header & Icon */}

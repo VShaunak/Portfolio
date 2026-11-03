@@ -267,3 +267,4 @@ export default function ProjectPage({ projectId, onNavigateBack, onSelectProject
     </article>
   );
 }
+

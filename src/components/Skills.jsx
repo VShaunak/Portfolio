@@ -103,7 +103,7 @@ export default function Skills() {
           return (
             <div
               key={index}
-              className="group bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200/80 dark:border-slate-800 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 hover:shadow-md transition-all duration-200 flex items-center gap-3"
+              className="group bg-white/85 dark:bg-[#1a1a1c]/85 backdrop-blur-sm p-4 rounded-xl border border-[#dadce0] dark:border-[#3c4043] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] hover:shadow-xs transition-all duration-150 flex items-center gap-3"
             >
               <div className="w-9 h-9 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-colors shrink-0">
                 <Icon className="w-4 h-4" />
