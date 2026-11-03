@@ -29,15 +29,15 @@ export default function About() {
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/80 dark:border-indigo-800/80 text-indigo-700 dark:text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-3">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Core Engineering Focus</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/80 dark:border-indigo-800/80 text-indigo-700 dark:text-indigo-300 text-xs font-semibold tracking-wide mb-3">
+          <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Universal SelfCare: Software Developer (June 2026 – Sep 2026)</span>
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
           Versatile Engineering Across the Modern Tech Stack.
         </h2>
         <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-          I operate across software architecture, applied artificial intelligence, deep learning models, data science pipelines, relational database engineering, and interactive browser simulations.
+          Industry experience building full-stack platforms at <strong>Universal SelfCare (June 2026 – Sep 2026)</strong>, paired with applied artificial intelligence research, deep learning models, data science pipelines, and interactive browser simulations.
         </p>
       </div>
 

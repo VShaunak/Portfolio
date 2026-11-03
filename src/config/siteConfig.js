@@ -17,6 +17,23 @@ export const siteConfig = {
   // Location Note: Strictly adhering to privacy requirements (no street/residential address)
   location: "United States",
 
+  // Professional Work Experience
+  workExperience: [
+    {
+      company: "Universal SelfCare",
+      role: "Software Developer",
+      startDate: "June 2026",
+      endDate: "September 2026",
+      period: "June 2026 – Sep 2026",
+      location: "United States",
+      highlights: [
+        "Engineered responsive full-stack software features, healthcare workflows, and digital user experiences.",
+        "Collaborated on API development, data management, and frontend components to ensure high performance and reliability.",
+        "Delivered production-grade code adhering to modern web development, type safety, and accessibility standards."
+      ]
+    }
+  ],
+
   // Resume Configuration
   // When you upload your resume PDF (e.g. to public/resume/Shaunak_Vidwans_Resume.pdf or Google Drive), put the URL here.
   resumeUrl: "", 

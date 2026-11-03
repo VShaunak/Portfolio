@@ -37,9 +37,10 @@ Designed with **Google's spaciousness**, **Apple's premium typography**, **Linea
    - **Reaction Rush**: Precision reaction timer benchmark measuring reflexes against esports and F1 driver standards across 5 randomized rounds.
    - Persistent personal best high scores stored via `localStorage`.
 
-5. **Professional Resume Integration**
-   - Configurable PDF viewer card with fallback preview and direct download button.
-   - No fabricated credentials—focused on real project delivery and technical competencies.
+5. **Professional Resume & Experience Integration**
+   - Professional Work Experience: **Software Developer** at **Universal SelfCare** (`June 2026 – Sep 2026`), delivering responsive healthcare platform features, full-stack workflows, and API integrations.
+   - Interactive verified resume with one-click print-to-PDF formatting, alongside an embedded PDF viewer card with direct download button.
+   - Verified project delivery and technical competencies across AI, machine learning, and systems engineering.
 
 6. **Privacy-Preserving Contact Hub**
    - Direct channels for GitHub, LinkedIn, and Email.

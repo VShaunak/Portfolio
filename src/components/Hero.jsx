@@ -150,7 +150,7 @@ export default function Hero({ onOpenResume }) {
         {/* Modern Pill Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/80 dark:border-indigo-800/80 text-indigo-700 dark:text-indigo-300 text-xs font-semibold tracking-wide mb-6 shadow-sm hover:scale-[1.02] transition-transform">
           <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Available for Engineering Roles & Collaborative Research</span>
+          <span>Universal SelfCare: Software Developer (June 2026 – Sep 2026)</span>
         </div>
 
         {/* Developer Name */}
