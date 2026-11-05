@@ -1,10 +1,48 @@
 /**
  * Complete Repository & Project Inventory for Shaunak Vidwans
  * Discovered dynamically from https://github.com/VShaunak
- * Covering all 25 public repositories with verified URLs, technical specs, and case categorization.
+ * Covering all 26 public repositories with verified URLs, technical specs, and case categorization.
  */
 
 export const projectsData = [
+  {
+    id: "data-mind",
+    repoName: "Data-Mind",
+    title: "Data Mind — Autonomous AI Data Analyst & Coding Agent",
+    category: "AI & Machine Learning",
+    categoryTags: ["AI & Machine Learning", "Data Science & Analytics", "Software Engineering"],
+    description: "An autonomous desktop data-analysis workstation and coding agent that understands natural-language analytical objectives, profiles datasets, plans statistical workflows, writes and executes sandboxed Python code with AST guardrails, self-corrects runtime errors, and synthesizes interactive Plotly visualizations with empirical reports.",
+    problem: "Data analysis workflows require constant manual data cleaning, script writing, debugging tracebacks, and chart synthesis, while cloud-based AI tools pose privacy risks and lack autonomous error-recovery in code execution.",
+    approach: "Built a 15-node LangGraph autonomous agent with a 3-retry self-correction loop, deterministic dataset profiler, AST security validator, Docker isolation sandbox, and local LLM abstraction layer supporting Ollama, LM Studio, and llama.cpp with zero cloud API dependencies.",
+    keyFeatures: [
+      "15-Node LangGraph autonomous agent governing state transitions, planning, execution, and recovery",
+      "Autonomous 3-retry self-correction loop capturing tracebacks and refining code against schema",
+      "100% local inference first via Ollama, LM Studio, llama.cpp, and OpenAI-compatible local endpoints",
+      "Hardened execution sandbox with AST static code guardrails and Docker resource limits",
+      "Interactive serialized Plotly.js charts (Scatter, Bar, Line, Heatmap) and empirical Markdown reports",
+      "Full Windows desktop application with React 18, TypeScript, Tailwind CSS, and FastAPI backend"
+    ],
+    technologies: [
+      "Python 3.11",
+      "LangGraph",
+      "FastAPI",
+      "Local LLMs (Ollama)",
+      "React 18",
+      "TypeScript",
+      "Docker Sandbox",
+      "AST Security",
+      "Plotly.js",
+      "SQLite (WAL)"
+    ],
+    githubUrl: "https://github.com/VShaunak/Data-Mind",
+    liveUrl: "",
+    portfolioUrl: "",
+    youtubeUrl: "",
+    projectType: "CASE_C_STUDY",
+    stars: 0,
+    updatedAt: "2026-11-05",
+    featured: true
+  },
   {
     id: "multi-llm-factchecker",
     repoName: "Multi-LLM-factChecker",
@@ -611,12 +649,12 @@ export const projectsData = [
     title: "Shaunak Vidwans — Premium Developer Portfolio",
     category: "Web Development",
     categoryTags: ["Web Development", "Interactive Applications"],
-    description: "The flagship portfolio web application featuring Google/Apple/Linear/Vercel design system, 5 interactive browser games, 25 GitHub repositories cataloged, and automated CI/CD deployment.",
+    description: "The flagship portfolio web application featuring Google/Apple/Linear/Vercel design system, 5 interactive browser games, 26 GitHub repositories cataloged, and dedicated project pages with architectural deep-dives.",
     problem: "Generic developer portfolios rely on outdated templates, static screenshots, and fake metrics without real interactive depth.",
     approach: "Built a production-grade single page application in React 18, Vite, Tailwind CSS, Lucide icons, and Canvas graphics, housing 5 original browser games and complete repository integration.",
     keyFeatures: [
       "Google spaciousness + Apple premium typography + Linear/Stripe modern visual polish",
-      "Complete discovery and showcase for all 25 public GitHub repositories with filtering and live links",
+      "Complete discovery and showcase for all 26 public GitHub repositories with filtering and architecture breakdowns",
       "5 fully playable original browser games: Neon Racer, Memory Matrix, Space Defender, 2048, and Reaction Rush",
       "Automated GitHub Actions CI/CD deployment pipeline targeting GitHub Pages with relative asset routing"
     ],

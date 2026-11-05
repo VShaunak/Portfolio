@@ -83,7 +83,7 @@ export default function ProjectsPage({ onNavigate }) {
         <div className="inline-flex items-center gap-2 text-xs font-medium text-[#1a73e8] dark:text-[#8ab4f8] mb-2">
           <span>PROJECT DIRECTORY</span>
           <span>•</span>
-          <span>25 VERIFIED PUBLIC REPOSITORIES</span>
+          <span>{projectsData.length} VERIFIED PUBLIC REPOSITORIES</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#202124] dark:text-white leading-tight mb-3">
           Projects & Implementations

@@ -70,7 +70,7 @@ export default function Projects({ onSelectProject }) {
         <div className="inline-flex items-center gap-2 text-xs font-medium text-[#1a73e8] dark:text-[#8ab4f8] mb-2">
           <span>PROJECT DIRECTORY</span>
           <span>•</span>
-          <span>25 PUBLIC REPOSITORIES</span>
+          <span>26 PUBLIC REPOSITORIES</span>
         </div>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#202124] dark:text-[#ffffff] mb-3">
           Projects & Implementations

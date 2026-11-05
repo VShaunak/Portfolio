@@ -86,7 +86,7 @@ export default function Hero({ onOpenResume }) {
         <div className="mt-14 pt-8 border-t border-[#dadce0] dark:border-[#3c4043] w-full max-w-2xl flex flex-wrap items-center justify-center gap-6 text-xs text-[#5f6368] dark:text-[#9aa0a6]">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#1a73e8]" />
-            <span>25 Public Repositories</span>
+            <span>26 Public Repositories</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#34a853]" />

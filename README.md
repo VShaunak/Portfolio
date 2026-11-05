@@ -20,7 +20,7 @@ Designed with **Google's spaciousness**, **Apple's premium typography**, **Linea
    - 7 distinct architectural pillars: *Software Engineering*, *Artificial Intelligence*, *Machine Learning*, *Data Science*, *Database Management*, *Research & Development*, and *Interactive Applications*.
    - Verified technology stack derived strictly from public GitHub repositories—zero fabricated percentage meters or fake progress bars.
 
-3. **Complete 25 Repository Catalog & Dynamic Exploration**
+3. **Complete 26 Repository Catalog & Dynamic Exploration**
    - Dynamically discovered from [github.com/VShaunak](https://github.com/VShaunak).
    - Real-time instant search across titles, descriptions, and technology tags.
    - Multi-category filtering and sorting (Featured first, Recently Updated, Alphabetical).
@@ -103,7 +103,7 @@ Portfolio/
 │   │   ├── Hero.jsx            # Dynamic headline + 60fps Canvas constellation
 │   │   ├── About.jsx           # 7 Engineering pillars with highlights
 │   │   ├── Skills.jsx          # Interactive category technology stack
-│   │   ├── Projects.jsx        # Searchable, filterable 25 repository catalog
+│   │   ├── Projects.jsx        # Searchable, filterable 26 repository catalog
 │   │   ├── ProjectModal.jsx    # Rich modal case study with YouTube embed
 │   │   ├── GameZone.jsx        # 5-game interactive arcade lobby
 │   │   ├── Resume.jsx          # PDF reader card and download triggers
@@ -113,7 +113,7 @@ Portfolio/
 │   ├── config/
 │   │   └── siteConfig.js       # Central configuration for future updates
 │   ├── data/
-│   │   ├── projectsData.js     # Structured dataset for all 25 repositories
+│   │   ├── projectsData.js     # Structured dataset for all 26 repositories
 │   │   └── skillsData.js       # Technical skills and engineering pillars
 │   ├── games/
 │   │   ├── NeonRacer.jsx       # 2D top-down cyberpunk arcade racer

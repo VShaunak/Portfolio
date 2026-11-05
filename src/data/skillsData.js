@@ -109,6 +109,8 @@ export const technicalSkillsList = [
 
   // AI & ML Frameworks
   { name: "PyTorch", category: "AI & ML", icon: "Flame" },
+  { name: "LangGraph (Autonomous Agents)", category: "AI & ML", icon: "Bot" },
+  { name: "Local LLMs (Ollama / llama.cpp)", category: "AI & ML", icon: "Bot" },
   { name: "Hugging Face Transformers", category: "AI & ML", icon: "Sparkles" },
   { name: "InsightFace & ONNX Runtime", category: "AI & ML", icon: "Eye" },
   { name: "FAISS Vector Search", category: "AI & ML", icon: "Search" },

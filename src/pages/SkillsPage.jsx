@@ -27,6 +27,7 @@ import {
   BookOpen 
 } from 'lucide-react';
 import { technicalSkillsList } from '../data/skillsData';
+import { projectsData } from '../data/projectsData';
 
 const iconMap = {
   Code,
@@ -179,7 +180,7 @@ export default function SkillsPage({ onNavigate }) {
           onClick={() => onNavigate('projects')}
           className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-xs font-medium text-white shadow-xs cursor-pointer"
         >
-          <span>See All 25 Projects Using This Stack</span>
+          <span>See All {projectsData.length} Projects Using This Stack</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </footer>

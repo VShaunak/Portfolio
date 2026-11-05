@@ -101,7 +101,7 @@ export default function HomePage({ onNavigate }) {
             onClick={() => onNavigate('projects')}
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1a73e8] dark:text-[#8ab4f8] hover:underline cursor-pointer shrink-0"
           >
-            <span>View all 25 repositories</span>
+            <span>View all 26 repositories</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
@@ -187,7 +187,7 @@ export default function HomePage({ onNavigate }) {
             onClick={() => onNavigate('projects')}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-[#202124] border border-[#dadce0] dark:border-[#3c4043] hover:border-[#1a73e8] dark:hover:border-[#8ab4f8] text-xs font-medium text-[#202124] dark:text-white shadow-xs transition cursor-pointer"
           >
-            <span>Browse Complete 25-Repository Directory</span>
+            <span>Browse Complete {projectsData.length}-Repository Directory</span>
             <ArrowRight className="w-3.5 h-3.5 text-[#1a73e8] dark:text-[#8ab4f8]" />
           </button>
         </div>
